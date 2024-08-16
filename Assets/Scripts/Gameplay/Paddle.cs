@@ -6,7 +6,7 @@ using Breakout.Gameplay.State;
 
 namespace Breakout.Gameplay
 {
-    internal class Paddle : MonoBehaviour
+    internal class Paddle : MonoBehaviour, IPaddle
     {
         [SerializeField] private Ball Ball;
         [SerializeField] private GameplayConfigSO GameplayConfigSO;
@@ -18,6 +18,8 @@ namespace Breakout.Gameplay
         
         private float _boundaryWidth;
         private PaddleState _paddleState;
+        
+        private const int BALL_LAYER = 7;
         
         private void Start()
         {
@@ -97,15 +99,15 @@ namespace Breakout.Gameplay
         
         private void OnCollisionEnter2D(Collision2D other)
         {
-            //in physics settings 2D, paddle can only collide with the ball,
-            //so there is no need to check for layers or tags
-            
-            //get direction vector from center of paddle to the ball's contact point to
-            //manipulate bounce angle of the ball
-            Vector2 contactPoint = other.GetContact(0).point;
-            Vector2 directionFromCenterOfPaddle = contactPoint - new Vector2(BoxCollider2D.transform.position.x, BoxCollider2D.transform.position.y);
-            
-            Ball.ChangeBallVelocity(directionFromCenterOfPaddle.normalized);
+            if (other.gameObject.layer == BALL_LAYER)
+            {
+                //get direction vector from center of paddle to the ball's contact point to
+                //manipulate bounce angle of the ball
+                Vector2 contactPoint = other.GetContact(0).point;
+                Vector2 directionFromCenterOfPaddle = contactPoint - new Vector2(BoxCollider2D.transform.position.x, BoxCollider2D.transform.position.y);
+                
+                Ball.ChangeBallVelocity(directionFromCenterOfPaddle.normalized);
+            }
         }
         
         private enum PaddleState
@@ -113,5 +115,10 @@ namespace Breakout.Gameplay
             FiredBall,
             NotFiredBall
         }
+
+        public void ChangePaddleSize(Vector2 targetSize)
+        {
+            PaddleRectTransform.sizeDelta = targetSize;
+            BoxCollider2D.size = targetSize;        }
     }
 }

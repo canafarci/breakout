@@ -50,7 +50,7 @@ namespace Breakout.MainMenu.MainMenu.ContinueButton
             //if player has reached the maximum level count in game, loop the level count from the start
             if (lastCompletedLevel == GameDataHolder.instance.levelCountInGame)
             {
-                lastCompletedLevel = 0;
+                PersistentGameplayData.instance.lastCompletedLevel = 0;
             }
         }
 

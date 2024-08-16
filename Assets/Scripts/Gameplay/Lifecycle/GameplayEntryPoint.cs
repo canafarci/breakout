@@ -47,7 +47,7 @@ namespace Breakout.Gameplay.Lifecycle
 
         private void OnDestroy()
         {
-            LoadingScreen.instance.OnLoadingScreenClosed.RemoveListener(Initialize);
+            LoadingScreen.instance?.OnLoadingScreenClosed.RemoveListener(Initialize);
         }
     }
 }

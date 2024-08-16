@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Breakout-Level-1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Breakout-Level-2.unity
+    guid: 98c92e7ddbfcb9349bf3c441db73b92f
+  - enabled: 1
+    path: Assets/Scenes/Breakout-Level-3.unity
+    guid: 60a21bdf063503d4daba664b0c300ead
   m_configObjects: {}

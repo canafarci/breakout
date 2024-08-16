@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb6f766520846bab21230fdb73a982b, type: 3}
+  m_Name: Powerup Data SO
+  m_EditorClassIdentifier: 
+  PowerupsPerLevel: 4
+  PowerupData:
+  - PowerupBackgroundColor:
+      serializedVersion: 2
+      rgba: 3572857710
+    PowerupID: 0
+    PowerupSprite: {fileID: 21300000, guid: 0817b08a4947e4742a6eae383062074e, type: 3}
+  - PowerupBackgroundColor:
+      serializedVersion: 2
+      rgba: 3562493893
+    PowerupID: 1
+    PowerupSprite: {fileID: 21300000, guid: 0a569c30b46940f41bb6565ffb21579c, type: 3}
+  - PowerupBackgroundColor:
+      serializedVersion: 2
+      rgba: 3572857710
+    PowerupID: 2
+    PowerupSprite: {fileID: 21300000, guid: 0964cfb23fb9c5644ade9ebdee7765ba, type: 3}
+  - PowerupBackgroundColor:
+      serializedVersion: 2
+      rgba: 3562493893
+    PowerupID: 3
+    PowerupSprite: {fileID: 21300000, guid: 3181621b5b1a3364a88a9b2ca3cb48b7, type: 3}
+  PowerupPrefab: {fileID: 8759177172446227095, guid: 97b2c5b00495a8947b65bb1aecc9d9c7, type: 3}
+  InitialImpulse: {x: 0, y: -300}
+  EnlargedPaddleSize: {x: 550, y: 77}
+  ShortenedPaddleSize: {x: 250, y: 77}
