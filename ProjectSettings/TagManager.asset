@@ -11,11 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Paddle
+  - Ball
+  - Brick
+  - LoseLifeZone
+  - Boundary
   - 
   - 
   - 

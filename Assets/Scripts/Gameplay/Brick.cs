@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Breakout
+namespace Breakout.Gameplay
 {
-    public class Brick : MonoBehaviour
+    internal class Brick : MonoBehaviour
     {
         [SerializeField] private Animator Animator;
     }

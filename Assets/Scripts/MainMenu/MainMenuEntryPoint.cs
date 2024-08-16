@@ -13,11 +13,19 @@ namespace Breakout.MainMenu.MainMenu
         
         private void Start()
         {
+            EnableCursor();
+            
             AudioPlayer.instance.PlayMusic(AudioClipID.MainMenuMusic);
             
             LifecycleManager.SetUpMainMenu();
             
             LoadingScreen.instance.DisableLoadingScreen();
+        }
+        
+        private void EnableCursor()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 }
