@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 
 using Breakout.CrossScene.Audio;
+using Breakout.CrossScene.Data;
 using Breakout.CrossScene.Enums;
 using Breakout.CrossScene.SceneLoading;
 using Breakout.Gameplay.Enums;
 using Breakout.Gameplay.State;
+using Breakout.Gameplay.Tutorial;
 
 namespace Breakout.Gameplay.Lifecycle
 {
     internal class GameplayEntryPoint : MonoBehaviour
     {
+        [SerializeField] private TutorialController TutorialController;
+
         private void Start()
         {
             DisableCursor();
@@ -31,9 +35,14 @@ namespace Breakout.Gameplay.Lifecycle
             GameplayStateManager.instance.ChangeState(GameplayState.WaitingToStart);
             LoadingScreen.instance.DisableLoadingScreen();
             
-            //TODO add tutorial to show controls
-            
-            GameplayStateManager.instance.ChangeState(GameplayState.Active);
+            if (PersistentGameplayData.instance.hasCompletedControlsTutorial)
+            {
+                GameplayStateManager.instance.ChangeState(GameplayState.Active);
+            }
+            else
+            {
+                TutorialController.Initialize();
+            }
         }
 
         private void OnDestroy()

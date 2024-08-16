@@ -17,6 +17,8 @@ namespace Breakout.Gameplay.EndGameCanvas
         {
             GameplayStateManager.instance.OnGameplayStateChanged.AddListener(GameplayStateChangedHandler);
             View.mainMenuButton.onClick.AddListener(MainMenuButtonClickHandler);
+            //for some reason, timeline is not initialized in its first frame.
+            //this extension forces it to be in the initial frame
             View.playableDirector.SetFirstFrame();
         }
 

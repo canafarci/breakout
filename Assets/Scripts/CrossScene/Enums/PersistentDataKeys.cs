@@ -2,6 +2,7 @@
 {
     public enum PersistentDataKeys
     {
-        LastCompletedLevel
+        LastCompletedLevel,
+        HasCompletedFirstGameplayTutorial
     }
 }
