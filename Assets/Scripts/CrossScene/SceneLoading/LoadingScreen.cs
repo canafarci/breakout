@@ -3,7 +3,6 @@ using Breakout.Infrastructure;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Breakout.CrossScene.SceneLoading
