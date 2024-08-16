@@ -8,6 +8,6 @@ namespace Breakout.CrossScene.Data
     {
         [SerializeField] private GameDataSO GameDataSO;
 
-        public int levelCountInGame => GameDataSO.LevelCountInGame;
+        public int levelCountInGame => GameDataSO.levelCountInGame;
     }
 }

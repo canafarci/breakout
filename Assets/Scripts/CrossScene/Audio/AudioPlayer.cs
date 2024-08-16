@@ -36,7 +36,7 @@ namespace Breakout.CrossScene.Audio
          //game config data objects (AudioConfigSO) make it worthwhile.
          private void InitializeOneShotAudioPlayers()
          {
-             for (int i = 0; i < AudioConfigSO.OneShotAudioSourceCount; i++)
+             for (int i = 0; i < AudioConfigSO.oneShotAudioSourceCount; i++)
              {
                  Component addedComponent = gameObject.AddComponent(typeof(AudioSource));
                  AudioSource audioSource = addedComponent as AudioSource;
@@ -71,7 +71,7 @@ namespace Breakout.CrossScene.Audio
             
          private AudioClip GetAudioClip(AudioClipID audioClipID)
          {
-             return AudioClipsSO.EnumeratedAudioClips
+             return AudioClipsSO.enumeratedAudioClips
                                  .FirstOrDefault(x => x.AudioClipID == audioClipID)
                                  .AudioClip;
          }
@@ -80,7 +80,7 @@ namespace Breakout.CrossScene.Audio
          private int GetOneShotAudioSourceIndex()
          {
              int oneShotAudioSourceIndex = _oneShotAudioSourceIndex;
-             _oneShotAudioSourceIndex = _oneShotAudioSourceIndex + 1 == AudioConfigSO.OneShotAudioSourceCount
+             _oneShotAudioSourceIndex = _oneShotAudioSourceIndex + 1 == AudioConfigSO.oneShotAudioSourceCount
                                             ? 0
                                             : _oneShotAudioSourceIndex++;
              

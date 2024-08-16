@@ -1,7 +1,11 @@
 {
     "name": "Breakout.Gameplay",
     "rootNamespace": "Breakout.Gameplay",
-    "references": ["GUID:9bcb0fa25da85954dbe762d146bf6cce","GUID:aadb0c25c6da7a24f9d3436b63868f08"],
+    "references": [
+        "GUID:9bcb0fa25da85954dbe762d146bf6cce",
+        "GUID:aadb0c25c6da7a24f9d3436b63868f08",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

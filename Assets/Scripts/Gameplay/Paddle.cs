@@ -63,7 +63,7 @@ namespace Breakout.Gameplay
         {
             float newPaddleXPosition = PaddleRectTransform.localPosition.x +
                                        InputPoller.instance.horizontalInput * 
-                                       GameplayConfigSO.PaddleSpeed * 
+                                       GameplayConfigSO.paddleSpeed * 
                                        Time.fixedDeltaTime;
             
             float paddleWidth = PaddleRectTransform.rect.width;

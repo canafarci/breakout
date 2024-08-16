@@ -15,3 +15,4 @@ MonoBehaviour:
   PaddleSpeed: 2000
   InitialBallVelocity: {x: 0, y: 800}
   BallDirectionChangeBounceNormalWeight: 0.5
+  PlayerStartingHealth: 5

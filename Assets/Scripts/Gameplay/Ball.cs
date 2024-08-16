@@ -27,7 +27,7 @@ namespace Breakout.Gameplay
         
         private void Start()
         {
-            _ballInitialVelocityMagnitude = GameplayConfigSO.InitialBallVelocity.magnitude;
+            _ballInitialVelocityMagnitude = GameplayConfigSO.initialBallVelocity.magnitude;
             GameplayStateManager.instance.OnGameplayStateChanged.AddListener(GameplayStateChangedHandler);
         }
         
@@ -49,7 +49,7 @@ namespace Breakout.Gameplay
         internal void Fire()
         {
             BallRectTransform.SetParent(GameplayBallHolder);
-            Rigidbody2D.AddForce(GameplayConfigSO.InitialBallVelocity, ForceMode2D.Impulse);        
+            Rigidbody2D.AddForce(GameplayConfigSO.initialBallVelocity, ForceMode2D.Impulse);        
         }
         
         //if we just rely on physics for bouncing the ball, gameplay starts to feel dull
@@ -60,10 +60,10 @@ namespace Breakout.Gameplay
         internal void ChangeBallVelocity(Vector2 normalizedDirectionFromCenterOfPaddle)
         {
             Vector2 weightedPreviousSpeed =
-                Rigidbody2D.velocity.normalized * (1f - GameplayConfigSO.BallDirectionChangeBounceNormalWeight);
+                Rigidbody2D.velocity.normalized * (1f - GameplayConfigSO.ballDirectionChangeBounceNormalWeight);
             
             Vector2 weightedDirectionChangeFromCenterOfPaddle = normalizedDirectionFromCenterOfPaddle *
-                                                                GameplayConfigSO.BallDirectionChangeBounceNormalWeight;
+                                                                GameplayConfigSO.ballDirectionChangeBounceNormalWeight;
             
             Vector2 weightedBounceDirection = weightedDirectionChangeFromCenterOfPaddle + weightedPreviousSpeed;
             
@@ -78,6 +78,9 @@ namespace Breakout.Gameplay
             //comparing ints are much cheaper than .CompareTag() method
             if (other.gameObject.layer == LOSE_LIFE_ZONE_LAYER)
             {
+                //decrease player health
+                PlayerManager.instance.ChangePlayerHealth(-1);
+
                 Rigidbody2D.velocity = Vector2.zero;
                 //paddle listens to this event
                 OnBallReset?.Invoke();
