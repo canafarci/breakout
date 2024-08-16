@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+using Breakout.CrossScene;
 using Breakout.CrossScene.Audio;
 using Breakout.CrossScene.Enums;
 using Breakout.CrossScene.SceneLoading;
@@ -35,7 +36,7 @@ namespace Breakout.Gameplay.EndGameCanvas
                 View.playableDirector.Play();
                 AudioPlayer.instance.PlayOneShotAudio(AudioClipID.LevelWon);
 
-                EnableCursor();
+                CursorManager.instance.EnableCursor();
             }
             else if (newState == GameplayState.GameLost)
             {
@@ -43,7 +44,7 @@ namespace Breakout.Gameplay.EndGameCanvas
                 View.playableDirector.Play();
                 AudioPlayer.instance.PlayOneShotAudio(AudioClipID.LevelFail);
                 
-                EnableCursor();
+                CursorManager.instance.EnableCursor();
             }
         }
 
@@ -51,12 +52,6 @@ namespace Breakout.Gameplay.EndGameCanvas
         {
             GameplayStateManager.instance?.OnGameplayStateChanged.RemoveListener(GameplayStateChangedHandler);
             View.mainMenuButton.onClick.RemoveListener(MainMenuButtonClickHandler);
-        }
-        
-        private void EnableCursor()
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
         }
     }
 }

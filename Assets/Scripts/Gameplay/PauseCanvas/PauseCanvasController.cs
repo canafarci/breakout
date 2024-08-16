@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+using Breakout.CrossScene;
 using Breakout.CrossScene.Enums;
 using Breakout.CrossScene.SceneLoading;
 using Breakout.Gameplay.Enums;
@@ -32,7 +33,7 @@ namespace Breakout.Gameplay.PauseCanvas
         {
             if (_pauseCanvasState == PauseCanvasState.Inactive && InputPoller.instance.pauseGameInput)
             {
-                EnableCursor();
+                CursorManager.instance.EnableCursor();
                 
                 _pauseCanvasState = PauseCanvasState.Active;
                 GameplayStateManager.instance.ChangeState(GameplayState.Paused);
@@ -50,7 +51,7 @@ namespace Breakout.Gameplay.PauseCanvas
             _pauseCanvasState = PauseCanvasState.Inactive;
             PauseCanvasView.tutorialController.Initialize();
             
-            DisableCursor();
+            CursorManager.instance.DisableCursor();
         }
 
         private void OnMainMenuButtonClicked()
@@ -66,7 +67,7 @@ namespace Breakout.Gameplay.PauseCanvas
         
         private void OnContinueGame()
         {
-            DisableCursor();
+            CursorManager.instance.DisableCursor();
                 
             if (GameplayStateManager.instance.currentGameState != GameplayState.Active)
             {
@@ -81,17 +82,6 @@ namespace Breakout.Gameplay.PauseCanvas
             PauseCanvasView.showControlsButton.onClick.RemoveListener(OnShowControlsButtonClicked);
         }
         
-        private void EnableCursor()
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        
-        private void DisableCursor()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
 
         private enum PauseCanvasState
         {

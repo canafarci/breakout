@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+using Breakout.CrossScene;
 using Breakout.CrossScene.Audio;
 using Breakout.CrossScene.Data;
 using Breakout.CrossScene.Enums;
@@ -16,7 +17,7 @@ namespace Breakout.Gameplay.Lifecycle
 
         private void Start()
         {
-            DisableCursor();
+            CursorManager.instance.DisableCursor();
             
             AudioPlayer.instance.PlayMusic(AudioClipID.GameplayMusic);
             
@@ -24,11 +25,7 @@ namespace Breakout.Gameplay.Lifecycle
             LoadingScreen.instance.DisableLoadingScreen();
         }
 
-        private void DisableCursor()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+
 
         private void Initialize()
         {
