@@ -8,8 +8,12 @@ namespace Breakout.Gameplay.PlayerInfoCanvas
     {
         [SerializeField] private TextMeshProUGUI ScoreText;
         [SerializeField] private TextMeshProUGUI HealthText;
+        [SerializeField] private Animator ScoreTextAnimator;
+        [SerializeField] private Animator HealthTextAnimator;
 
-        public TextMeshProUGUI scoreText => ScoreText;
-        public TextMeshProUGUI healthText => HealthText;
+        internal TextMeshProUGUI scoreText => ScoreText;
+        internal TextMeshProUGUI healthText => HealthText;
+        internal Animator healthTextAnimator => HealthTextAnimator;
+        internal Animator scoreTextAnimator => ScoreTextAnimator;
     }
 }

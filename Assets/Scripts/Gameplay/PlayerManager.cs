@@ -12,16 +12,17 @@ namespace Breakout.Gameplay
     {
         [SerializeField] private GameplayConfigSO GameplayConfigSO;
 
-        internal UnityEvent<int> OnPlayerHealthChanged = new();
+        internal UnityEvent<int, int> OnPlayerHealthChanged = new();
         internal int playerHealth { get; private set; }
 
         private void Start()
         {
-            SetPlayerHealth(GameplayConfigSO.playerStartingHealth);
+            playerHealth = GameplayConfigSO.playerStartingHealth;
         }
         
         internal void ChangePlayerHealth(int changeAmount)
         {
+            int lastHealth = playerHealth;
             playerHealth += changeAmount;
 
             if (playerHealth < 0)
@@ -30,13 +31,7 @@ namespace Breakout.Gameplay
                 return;
             }
 
-            SetPlayerHealth(playerHealth);
-        }
-
-        private void SetPlayerHealth(int health)
-        {
-            playerHealth = health;
-            OnPlayerHealthChanged?.Invoke(playerHealth);
+            OnPlayerHealthChanged?.Invoke(playerHealth, lastHealth);
         }
     }
 }

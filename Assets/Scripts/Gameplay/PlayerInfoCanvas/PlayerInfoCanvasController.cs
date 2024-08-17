@@ -6,7 +6,12 @@ namespace Breakout.Gameplay.PlayerInfoCanvas
 {
     internal class PlayerInfoCanvasController : MonoBehaviour
     {
-        [SerializeField] private PlayerInfoCanvasView _view;
+        [SerializeField] private PlayerInfoCanvasView View;
+        
+        //cache animation hashes, as it is cheaper to calculate them only one
+        private readonly int _healthIncreaseAnimationHash = Animator.StringToHash("HealthIncrease");
+        private readonly int _healthDecreaseAnimationhash = Animator.StringToHash("HealthDecrease");
+        private readonly int _scoreChangeAnimationhash = Animator.StringToHash("ScoreChange");
 
         private void Start()
         {
@@ -18,18 +23,32 @@ namespace Breakout.Gameplay.PlayerInfoCanvas
         private void PlayerEarnedScoreHandler(int playerScore)
         {
             string newScoreText = $"Score: {playerScore}";
-            _view.scoreText.SetText(newScoreText);
+            View.scoreText.SetText(newScoreText);
+            View.scoreTextAnimator.SetTrigger(_scoreChangeAnimationhash);
         }
 
-        private void PlayerHealthChangedHandler(int playerNewHealth)
+        private void PlayerHealthChangedHandler(int playerNewHealth, int playerLastHealth)
         {
             SetPlayerHealthText(playerNewHealth);
+            PlayHealthTextAnimation(playerNewHealth, playerLastHealth);
+        }
+
+        private void PlayHealthTextAnimation(int playerNewHealth, int playerLastHealth)
+        {
+            if (playerNewHealth > playerLastHealth)
+            {
+                View.healthTextAnimator.SetTrigger(_healthIncreaseAnimationHash);
+            }
+            else
+            {
+                View.healthTextAnimator.SetTrigger(_healthDecreaseAnimationhash);
+            }
         }
 
         private void SetPlayerHealthText(int playerNewHealth)
         {
             string newHealthText = $"x{playerNewHealth}";
-            _view.healthText.SetText(newHealthText);
+            View.healthText.SetText(newHealthText);
         }
 
         private void OnDestroy()
